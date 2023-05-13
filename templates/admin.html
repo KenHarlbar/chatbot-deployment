@@ -1,0 +1,106 @@
+{% extends 'layout.html'%}
+{% block content %}
+<h1 class="h1">Admin Page</h1>
+<hr>
+<h2 class="text-center h2">Database</h2>
+<hr>
+<h3 class="display-3 my-5">Orders</h3>
+<h4 class="h4">New Orders</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name of Buyer</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            {% if not order.fulfilled%}
+            <th scope="row">{{ order.id }}</th>
+            <td>{{ order.name_of_buyer }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.phone_number }}</td>
+            <td><a class="btn btn-warning" href="{{ url_for('see_order', order_id=order.id) }}">See more</a>
+            </td>
+            <td><a class="btn btn-danger" href="{{ url_for('delete', entity='Order', item_id=order.id) }}">Delete</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h4 class="h4">Fulfilled Orders</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name of Buyer</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            {% if order.fulfilled%}
+            <td scope="row">{{ order.id }}</td>
+            <td scope="row">{{ order.name_of_buyer }}</td>
+            <td scope="row">{{ order.address }}</td>
+            <td scope="row">{{ order.phone_number }}</td>
+            <td><a class="btn btn-danger" href="{{ url_for('delete', entity='Order', item_id=order.id) }}">Delete</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr>
+<h3 class="display-3 my-5">Items</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">price</th>
+            <th scope="col">description</th>
+            <th scope="col">category</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.category.name }}</td>
+            <td><a class="btn btn-secondary" href="{{ url_for('update', entity='Item', item_id=item.id) }}">Update</a>
+            </td>
+            <td><a class="btn btn-danger" href="{{ url_for('delete', entity='Item', item_id=item.id) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a class="btn btn-primary" href="{{ url_for('add') }}">Add Item</a>
+<h3 class="display-3 my-5">Categories</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <th scope="row">{{ category.id }}</th>
+            <td>{{ category.name }}</td>
+            <td><a class="btn btn-secondary" href="{{ url_for('update_category', item_id=category.id) }}">Update</a>
+            </td>
+            <td><a class="btn btn-danger" href="{{ url_for('delete', entity='Category', item_id=category.id) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a class="btn btn-primary" href="{{ url_for('add_category') }}">Add Category</a>
+{% endblock %}
