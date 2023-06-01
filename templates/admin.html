@@ -5,7 +5,7 @@
 <h2 class="text-center h2">Database</h2>
 <hr>
 <h3 class="display-3 my-5">Orders</h3>
-<h4 class="h4">New Orders</h4>
+<h4 class="h4 bg-primary text-white p-3">New Orders</h4>
 <table class="table">
     <thead>
         <tr>
@@ -31,7 +31,7 @@
         {% endfor %}
     </tbody>
 </table>
-<h4 class="h4">Fulfilled Orders</h4>
+<h4 class="h4 bg-primary text-white p-3 m-3">Fulfilled Orders</h4>
 <table class="table">
     <thead>
         <tr>
@@ -56,14 +56,14 @@
     </tbody>
 </table>
 <hr>
-<h3 class="display-3 my-5">Items</h3>
+<h3 class="h4 bg-primary text-white p-3">Items</h3>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">id</th>
             <th scope="col">name</th>
             <th scope="col">price</th>
-            <th scope="col">description</th>
+            <!-- <th scope="col">description</th> -->
             <th scope="col">category</th>
         </tr>
     </thead>
@@ -82,7 +82,7 @@
     </tbody>
 </table>
 <a class="btn btn-primary" href="{{ url_for('add') }}">Add Item</a>
-<h3 class="display-3 my-5">Categories</h3>
+<h3 class="h4 bg-primary text-white p-3 mt-3">Categories</h3>
 <table class="table">
     <thead>
         <tr>
@@ -102,5 +102,5 @@
         {% endfor %}
     </tbody>
 </table>
-<a class="btn btn-primary" href="{{ url_for('add_category') }}">Add Category</a>
+<a class="btn btn-primary mb-4" href="{{ url_for('add_category') }}">Add Category</a>
 {% endblock %}

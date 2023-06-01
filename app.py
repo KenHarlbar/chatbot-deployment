@@ -27,14 +27,22 @@ from utils import (
 )
 
 
-app = Flask(__name__)
-app.config.from_object(Config)
+
 login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "login"
-login_manager.login_message_category = "info"
 bcrypt = Bcrypt()
-bcrypt.init_app(app)
+
+
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    login_manager.init_app(app)
+    login_manager.login_view = "login"
+    login_manager.login_message_category = "info"
+    bcrypt.init_app(app)
+
+    return app
+
+app = create_app()
 
 
 @login_manager.user_loader
@@ -96,7 +104,7 @@ def predict():
     if prev_msg == add_another_prompt:
         if text == "1":
             response = add_prompt()
-        else:
+        elif text == '2':
             response = ask_name
     if prev_msg == ask_name:
         orders.append(text)

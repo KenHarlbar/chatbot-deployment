@@ -15,7 +15,17 @@
 </head>
 
 <body>
-    <div style="margin-left:auto;"><a class="text-danger" href="{{ url_for('logout') }}">Logout</a></div>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand display-1" style="margin-right: auto;" href="#">{{ title }}</a>
+        </div>
+        <div style="margin-left:auto;"><a class="text-danger" href="{{ url_for('logout') }}">Logout</a></div>
+    </nav>
     <main class="container-sm">
         <div class="">
             <div class="">
